@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -11,6 +10,7 @@ var express = require('express')
 
 var app = express();
 
+// use the html view
 app.engine('html', require('ejs').renderFile);
 
 app.configure(function(){
