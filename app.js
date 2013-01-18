@@ -26,6 +26,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'templates/app')));
 });
 
+// config the route rules express
 routes(app);
 
 app.configure('development', function(){
