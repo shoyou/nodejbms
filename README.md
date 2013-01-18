@@ -6,7 +6,7 @@ Use the NodeJS to develope an example of jbms
 Install
 ========
 
-```ObjectiveC
+```
 git clone git@github.com:shoyou/nodejbms.git
 ```
 
