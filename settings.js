@@ -1,8 +1,8 @@
 /**
- *  settings.js ÅäÖÃĞÅÏ¢
+ *  settings.js æ•°æ®åº“é…ç½®
  *  @author: JY
- *  @since: 2012-11-08
+ *  @since: 2013-01-22
  */
 exports.settings = {
-  db: 'mongodb://127.0.0.1/jetsenjbms'
+  db: 'mongodb://127.0.0.1/jbms'
 };
