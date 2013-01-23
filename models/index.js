@@ -17,8 +17,13 @@ require('./department');
 require('./account');
 require('./customer');
 require('./role');
+require('./dictionary');
+require('./purview');
 
 exports.Department = mongoose.model('Department');
 exports.Account = mongoose.model('Account');
 exports.Customer = mongoose.model('Customer');
-exports.Role = monogoose.model('Role');
+exports.CustomerUnit = mongoose.model('CustomerUnit');
+exports.CustomerDept = mongoose.model('CustomerDept');
+exports.Role = mongoose.model('Role');
+exports.Purview = mongoose.model('Purview');
