@@ -15,6 +15,10 @@ mongoose.connect(settings.db, function (err) {
 // 加载模型
 require('./department');
 require('./account');
+require('./customer');
+require('./role');
 
 exports.Department = mongoose.model('Department');
 exports.Account = mongoose.model('Account');
+exports.Customer = mongoose.model('Customer');
+exports.Role = monogoose.model('Role');
