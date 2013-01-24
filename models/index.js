@@ -20,6 +20,7 @@ require('./role');
 require('./dictionary');
 require('./menu');
 require('./purview');
+require('./salebill');
 
 exports.Department = mongoose.model('Department');
 exports.Account = mongoose.model('Account');
@@ -32,3 +33,4 @@ exports.Menu = mongoose.model('Menu');
 exports.RoleAuthority = mongoose.model('RoleAuthority');
 exports.MenuMap = mongoose.model('MenuMap');
 exports.AccountAuthority = mongoose.model('AccountAuthority');
+exports.SaleBill = mongoose.model('SaleBill');
