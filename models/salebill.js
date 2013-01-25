@@ -30,9 +30,11 @@ var SaleBillSchema = new Schema({
     sale_state: String,
     history_state: String,
     sale_area: String,
-    sale_province: String,
-    sale_city: String,
-    sale_district: String,
+    sale_address: {
+      sale_province: String,
+      sale_city: String,
+      sale_district: String
+    },
     update_record: String,
     update_id: String,
     create_date: {type: Date, default: Date.now},
