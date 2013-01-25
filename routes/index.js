@@ -1,17 +1,17 @@
-
-/*
- * GET home page.
+/**
+ *  index.js è·¯ç”±é€‰æ‹©è§„åˆ™
+ *  @author: JY
+ *  @since: 2013-01-25
  */
+var account = require('../controllers/account')
+    , index = require('../controllers/index')
+    , login = require('../controllers/login');
 
-var account = require('../controllers/account');
-/*
-exports.index = function(req, res){
-  res.render('account/login', { title: 'Express' });
-};*/
 module.exports = function (app) {
-  // µÇÂ¼Ò³Ãæ
-  app.get('/', account.login);
-  // µÇÂ¼Ìá½»
-  app.post('/account/index', account.index);
-  app.get('/index', account.welcome);
+
+    app.get('/', index.index);
+    app.get('/index', index.index);
+
+    app.post('/login', login.index);
+    app.get('/logout', login.logout);
 }

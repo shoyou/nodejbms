@@ -4,5 +4,5 @@
  *  @since: 2013-01-22
  */
 exports.settings = {
-  db: 'mongodb://127.0.0.1/jbms'
+  db: 'mongodb://192.168.1.119/jbms'
 };

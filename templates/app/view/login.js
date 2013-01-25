@@ -2,9 +2,8 @@
  *
  * 系统登录界面
  * @author JY
- * @since 2012-04-15
+ * @since 2013-01-25
  */
-Ext.Loader.setConfig({enabled:true});
 Ext.onReady(function() {
     // 加载显示图片
     Ext.get('hello-tabs').setStyle('display', 'block');
@@ -72,7 +71,7 @@ Ext.onReady(function() {
         
     var win = Ext.create("Ext.window.Window", {
         closable: false,
-        title: '个人日常管理系统',
+        title: '管理系统',
         renderTo: Ext.getBody(),
         layout: 'fit',
         width: 460,
@@ -127,7 +126,7 @@ Ext.onReady(function() {
         var form = Ext.getCmp("loginForm").form;
         if (form.isValid()) {
             form.submit({
-                url: '/account/index',
+                url: '/login',
                 method: 'post',
                 timeout: 5000,
                 waitTitle: '正在验证登录',
