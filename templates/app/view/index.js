@@ -2,11 +2,14 @@
  *
  * 系统首页界面
  * @author JY
- * @since 2012-11-08
+ * @since 2013-01-27
  */
-Ext.Loader.setConfig({enabled:true});
 // 设置动态加载路径 命名空间
-Ext.Loader.setPath('WMZ', '');
+Ext.Loader.setConfig({
+    enabled: true,
+    paths: {'WMZ': ''}
+});
+
 Ext.onReady(function() {
 
     Ext.tip.QuickTipManager.init();
@@ -67,7 +70,7 @@ Ext.onReady(function() {
         arrowAlign: 'right',
         renderTo: 'closeDiv',
         handler: function() {
-            window.location.href = '/?reqCode=logout';
+            window.location.href = '/logout?reqCode=logout';
         }
     });
     

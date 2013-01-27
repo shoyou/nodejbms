@@ -5,3 +5,7 @@
  */
 var models = require('../models');
 var Account = models.Account;
+
+exports.updatepwd = function(req, res, next) {
+
+}

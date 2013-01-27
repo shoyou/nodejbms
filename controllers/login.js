@@ -18,8 +18,7 @@ exports.index = function (req, res, next) {
             , password = req.body.password.trim();
 
         var render = function(data) {
-            console.log('DDD');
-            res.render('account/index', {title: '晚上好'});
+            res.redirect('/', {'success': true});
         };
 
         proxy.assign('findAccount', render);
@@ -27,30 +26,23 @@ exports.index = function (req, res, next) {
         var where = {};
         where = {'account': account,'password': password};
 
-        ad = new Account();
-        ad.account = 'ggod';
-        ad.password = 'dd';
-        ad.save(function (err) {
-            if (err)
-                return next(err);
-        });
         if (account && password) {
             Account.find(where, function(err, account) {
                 if (err)
                    return next(err);
-                console.log(account+'知道');
-                if (!account) {
-                    return res.redirect('/login');
-                } else {
+
+                if (account != null && account.length > 0) {
+                    req.session.is_login = true;
                     proxy.trigger('findAccount', account);
+                } else {
+                    return res.redirect('/login');
                 }
             });
         }
-        //res.redirect('/', {'success': true});
     }
-};
+}
 
 exports.logout = function(req, res, next) {
     req.session.destroy();
     res.redirect('/');
-};
+}
