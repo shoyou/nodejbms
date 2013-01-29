@@ -24,18 +24,19 @@ exports.index = function (req, res, next) {
         proxy.assign('findAccount', render);
 
         var where = {};
-        where = {'account': account,'password': password};
+        where = {'account': account, 'password': password};
 
         if (account && password) {
-            Account.find(where, function(err, account) {
+            Account.findOne(where, function(err, account) {
                 if (err)
                    return next(err);
-
-                if (account != null && account.length > 0) {
+                console.log(account+'aaa');
+                if (account != null) {
                     req.session.is_login = true;
+                    req.session.account = account;
                     proxy.trigger('findAccount', account);
                 } else {
-                    return res.redirect('/login');
+                    res.send({'success': false, 'msg': '用户名或密码错误!'});
                 }
             });
         }

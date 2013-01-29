@@ -305,6 +305,9 @@ Ext.onReady(function() {
     
     // 动态显示系统时间
     setInterval("showTime()", 1000);
+
+    // 显示日期信息
+    Ext.get('dateInfo').setHTML(getNowTime());
     Ext.QuickTips.init();
 });
 
@@ -319,17 +322,55 @@ function showTime() {
 	m = m < 10 ? '0' + m : m;
 	var s = date.getSeconds();
 	s = s < 10 ? '0' + s : s;
-	document.getElementById('rTime').innerHTML = h + ":" + m + ":" + s;
+	Ext.get('rTime').setHTML(h + ":" + m + ":" + s);
 }
 
 /**
  * 加载完成移除遮罩层
  */
-Ext.EventManager.on(window, 'load', function(){
+Ext.EventManager.on(window, 'load', function() {
     setTimeout(
         function() {
             Ext.get('loading').remove();
             Ext.get('loading-mask').fadeOut({remove:true});
         }, 250); 
 });
+
+/**
+ * 获取当前年月
+ * @return {String}
+ */
+function getNowTime() {
+
+    var now = new Date();
+    var week;
+    var resultMsg;
+
+    switch (now.getDay()) {
+        case 0:
+            week = '日';
+            break;
+        case 1:
+            week = '一';
+            break;
+        case 2:
+            week = '二';
+            break;
+        case 3:
+            week = '三';
+            break;
+        case 4:
+            week = '四';
+            break;
+        case 5:
+            week = '五';
+            break;
+        case 6:
+            week = '六';
+            break;
+    }
+
+    resultMsg = now.getFullYear() + "年" + (now.getMonth()+1) + "月" + now.getDate() + "日 " +"星期" + week;
+    return resultMsg;
+}
 

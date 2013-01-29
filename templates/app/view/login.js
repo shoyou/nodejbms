@@ -118,8 +118,7 @@ Ext.onReady(function() {
 	win.show();
     
     /**
-    *
-    *提交登录请求
+    * 提交登录请求
     */
     function login() {
         // 取得form对象
@@ -135,19 +134,9 @@ Ext.onReady(function() {
                     window.location.href = 'index?reqCode=indexInit';
                 },
                 failure: function(form, action) {
-                    switch (action.failureType) {
-                        case Ext.form.action.Action.CLIENT_INVALID :
-                            Ext.Msg.alert('登录失败', '提交数据不合法');
-                            break;
-                        case Ext.form.action.Action.CONNECT_FAILURE :
-                            Ext.Msg.alert('登录失败', '网络连接失败');
-                            break;
-                        case Ext.form.action.Action.SERVER_INVALID :
-                            Ext.Msg.alert('登录失败', action.result.msg);
-                        default:
-                            Ext.Msg.alert('登录失败', '用户名或密码不正确，请重新输入!');
-                    }
-                    form.reset();
+                    var errmsg = action.result.msg;
+                    Ext.Msg.alert('登录失败', errmsg, 'info');
+                    // form.reset();
                 }
             });
         }
