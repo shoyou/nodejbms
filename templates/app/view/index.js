@@ -146,7 +146,7 @@ Ext.onReady(function() {
                 userFormPanel.form.load({
                     waitTitle: '提示',
                     waitMsg: '正在读取用户信息,请稍候...',
-                    url: '/account/updatepwd/?reqCode=loadUserInfo',
+                    url: '/account/findAccountInfo/?reqCode=loadUserInfo',
                     success: function(form, action) {
                     },
                     failure: function(form, action) {
@@ -156,6 +156,46 @@ Ext.onReady(function() {
             }, 5);
         });
         userWindow.show();
+    }
+
+    /**
+     * 修改用户信息
+     */
+    function updateUser() {
+        if (!userFormPanel.form.isValid()) {
+            return;
+        }
+        var password1 = Ext.getCmp('password1').getValue();
+        var password = Ext.getCmp('password').getValue();
+
+        if (password1 != password) {
+            Ext.Msg.alert('提示', '两次输入的密码不匹配,请重新输入!');
+            Ext.getCmp('password').setValue('');
+            Ext.getCmp('password1').setValue('');
+            return;
+        }
+        userFormPanel.form.submit({
+            url: '/account/updAccountInfo/?reqCode=loadUserInfo',
+            waitTitle: '提示',
+            method: 'POST',
+            waitMsg: '正在处理数据,请稍候...',
+            success: function(form, action) {
+                userWindow.hide();
+                Ext.Msg.alert('提示', '密码修改成功');
+            },
+            failure: function(form, action) {
+                var flag = action.result.flag;
+                if (flag == '0') {
+                    Ext.Msg.alert('提示', '您输入的当前密码验证失败,请重新输入',
+                        function() {
+                            Ext.getCmp('password2').setValue('');
+                            Ext.getCmp('password2').focus();
+                        });
+                } else {
+                    Ext.Msg.alert('提示', '密码修改失败');
+                }
+            }
+        });
     }
 
     var userWindow = Ext.create('Ext.window.Window', {
@@ -186,11 +226,7 @@ Ext.onReady(function() {
             text: '保存',
             iconCls: 'acceptIcon',
             handler: function() {
-                if (runMode == '0') {
-                    Ext.Msg.alert('提示', '系统正处于演示模式下运行,您的操作被取消!该模式下只能进行查询操作!');
-                    return;
-                }
-                //updateUser();
+                updateUser();
             }
             }, {
                 text: '关闭',

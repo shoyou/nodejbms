@@ -15,5 +15,6 @@ module.exports = function (app) {
     app.post('/login', login.index);
     app.get('/logout', login.logout);
 
-    app.post('/account/updatepwd', account.updatepwd);
+    app.post('/account/findAccountInfo', account.findAccountInfo);
+    app.post('/account/updAccountInfo', account.updAccountInfo);
 }
