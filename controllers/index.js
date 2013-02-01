@@ -9,11 +9,11 @@ exports.index = function (req, res, next) {
         var timeMsg;
 
         if (hour >= 6 && hour < 12) {
-            timeMsg = "上午好!"
+            timeMsg = "上午好!";
         } else if (hour >= 12 && hour < 18) {
-            timeMsg = "下午好!"
+            timeMsg = "下午好!";
         } else {
-            timeMsg = "晚上好!"
+            timeMsg = "晚上好!";
         }
 
         res.render('account/index', {
