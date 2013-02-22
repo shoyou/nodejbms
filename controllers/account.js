@@ -7,7 +7,7 @@ var models = require('../models');
 var Account = models.Account;
 var EventProxy = require('eventproxy').EventProxy;
 
-exports.findAccountInfo = function(req, res, next) {
+exports.findAccount = function(req, res, next) {
     var proxy = new EventProxy();
 
     var render = function(data) {
@@ -36,14 +36,14 @@ exports.findAccountInfo = function(req, res, next) {
     });
 }
 
-exports.updAccountInfo = function(req, res, next) {
+exports.updateAccount = function(req, res, next) {
     var proxy = new EventProxy();
 
     var render = function(data) {
         res.send(data);
     };
 
-    proxy.assign('updAccountInfo', render);
+    proxy.assign('updateAccount', render);
 
     var where = {};
 
@@ -72,6 +72,45 @@ exports.updAccountInfo = function(req, res, next) {
         } else {
             result = {'success': false};
         }
-        proxy.trigger('updAccountInfo', result);
+        proxy.trigger('updateAccount', result);
     });
+}
+
+exports.saveAccount = function(req, res, next) {
+    var proxy = new EventProxy();
+    
+    var account = new Account();
+    account.account = req.param('account');
+    account.password = req.param('password');
+    account.username = req.param('username');
+    
+    var render = function(data) {
+        res.send(data);
+    }
+    
+    proxy.assign('saveAccount', render);
+    account.save(function(err, account) {
+        if (err)
+            return next(err);
+            
+        proxy.trigger('saveAccount', {'success': true});
+    });
+}
+    
+exports.removeAccount = function(req, res, next) {
+    var proxy = new EventProxy();
+    
+    var render = function(data) {
+        res.send(data);
+    }
+    
+    var id = req.param('id');
+    proxy.assign('removeAccount', render);
+    
+    Account.remove({'_id', id}, function(err) {
+        if (err)
+            return next(err);
+            
+        proxy.trigger('removeAccount', {'success': true});
+    });  
 }
