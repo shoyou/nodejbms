@@ -107,7 +107,7 @@ exports.removeAccount = function(req, res, next) {
     var id = req.param('id');
     proxy.assign('removeAccount', render);
     
-    Account.remove({'_id', id}, function(err) {
+    Account.remove({'_id': id}, function(err) {
         if (err)
             return next(err);
             
