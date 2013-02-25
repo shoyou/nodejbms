@@ -146,7 +146,7 @@ Ext.onReady(function() {
                 userFormPanel.form.load({
                     waitTitle: '提示',
                     waitMsg: '正在读取用户信息,请稍候...',
-                    url: '/account/findAccountInfo/?reqCode=loadUserInfo',
+                    url: '/account/findAccount/?reqCode=loadUserInfo',
                     success: function(form, action) {
                     },
                     failure: function(form, action) {
@@ -175,7 +175,7 @@ Ext.onReady(function() {
             return;
         }
         userFormPanel.form.submit({
-            url: '/account/updAccountInfo/?reqCode=loadUserInfo',
+            url: '/account/updateAccount/?reqCode=loadUserInfo',
             waitTitle: '提示',
             method: 'POST',
             waitMsg: '正在处理数据,请稍候...',
