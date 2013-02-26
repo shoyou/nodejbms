@@ -7,7 +7,7 @@ var models = require('../models');
 var Account = models.Account;
 var EventProxy = require('eventproxy').EventProxy;
 
-exports.findAccount = function(req, res, next) {
+exports.findAccountInfo = function(req, res, next) {
     var proxy = new EventProxy();
 
     var render = function(data) {
@@ -36,21 +36,20 @@ exports.findAccount = function(req, res, next) {
     });
 }
 
-exports.updateAccount = function(req, res, next) {
+exports.updAccountInfo = function(req, res, next) {
     var proxy = new EventProxy();
 
     var render = function(data) {
         res.send(data);
     };
 
-    proxy.assign('updateAccount', render);
+    proxy.assign('updAccountInfo', render);
 
     var where = {};
 
     var userId = req.param('userid')
-        , accountname = req.param('account')
+        , account = req.param('account')
         , password = req.param('password2')
-        , pwd = req.param('password')
         , username = req.param('username');
 
     where = {'_id': userId, 'password': password};
@@ -61,11 +60,11 @@ exports.updateAccount = function(req, res, next) {
         var result;
         if (account != null) {
 
-            account.account = accountname;
-            account.password = pwd;
+            account.account = account;
+            account.password = password;
             account.username = username;
             console.log(account+'dd');
-            account.save(function(err) {
+            account.update(function(err) {
                 if (err)
                     return next(err);
             });
@@ -73,45 +72,6 @@ exports.updateAccount = function(req, res, next) {
         } else {
             result = {'success': false};
         }
-        proxy.trigger('updateAccount', result);
+        proxy.trigger('updAccountInfo', result);
     });
-}
-
-exports.saveAccount = function(req, res, next) {
-    var proxy = new EventProxy();
-    
-    var account = new Account();
-    account.account = req.param('account');
-    account.password = req.param('password');
-    account.username = req.param('username');
-    
-    var render = function(data) {
-        res.send(data);
-    }
-    
-    proxy.assign('saveAccount', render);
-    account.save(function(err, account) {
-        if (err)
-            return next(err);
-            
-        proxy.trigger('saveAccount', {'success': true});
-    });
-}
-    
-exports.removeAccount = function(req, res, next) {
-    var proxy = new EventProxy();
-    
-    var render = function(data) {
-        res.send(data);
-    }
-    
-    var id = req.param('id');
-    proxy.assign('removeAccount', render);
-    
-    Account.remove({'_id': id}, function(err) {
-        if (err)
-            return next(err);
-            
-        proxy.trigger('removeAccount', {'success': true});
-    });  
 }
