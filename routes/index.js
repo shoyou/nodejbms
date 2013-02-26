@@ -15,6 +15,8 @@ module.exports = function (app) {
     app.post('/login', login.index);
     app.get('/logout', login.logout);
 
-    app.post('/account/findAccountInfo', account.findAccountInfo);
-    app.post('/account/updAccountInfo', account.updAccountInfo);
+    app.post('/account/findAccount', account.findAccount);
+    app.post('/account/updateAccount', account.updateAccount);
+    app.post('/account/saveAccount', account.saveAccount);
+    app.post('/account/removeAccount', account.removeAccount);
 }

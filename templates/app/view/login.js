@@ -128,8 +128,6 @@ Ext.onReady(function() {
                 url: '/login',
                 method: 'post',
                 timeout: 5000,
-                waitTitle: '正在验证登录',
-                waitMsg: '正在验证您的身份,请稍候...',
                 success: function(form, action) {
                     window.location.href = 'index?reqCode=indexInit';
                 },
