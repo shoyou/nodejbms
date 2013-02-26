@@ -48,7 +48,7 @@ exports.updateAccount = function(req, res, next) {
     var where = {};
 
     var userId = req.param('userid')
-        , account = req.param('account')
+        , accountname = req.param('account')
         , password = req.param('password2')
         , username = req.param('username');
 
@@ -60,11 +60,11 @@ exports.updateAccount = function(req, res, next) {
         var result;
         if (account != null) {
 
-            account.account = account;
+            account.account = accountname;
             account.password = password;
             account.username = username;
             console.log(account+'dd');
-            account.update(function(err) {
+            account.save(function(err) {
                 if (err)
                     return next(err);
             });
