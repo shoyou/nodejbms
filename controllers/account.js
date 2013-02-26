@@ -64,7 +64,6 @@ exports.updateAccount = function(req, res, next) {
             account.account = accountname;
             account.password = pwd;
             account.username = username;
-            console.log(account+'dd');
             account.save(function(err) {
                 if (err)
                     return next(err);
