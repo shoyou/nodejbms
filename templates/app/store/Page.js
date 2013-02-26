@@ -2,7 +2,7 @@
  *
  * 导航分页数据
  * @author JY
- * @since 2012-04-27
+ * @since 2013-02-21
  */
 Ext.define('WMZ.store.Page', {
 	extend: 'Ext.data.ArrayStore',
