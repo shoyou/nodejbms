@@ -9,6 +9,7 @@ var settings = require('../settings').settings;
 mongoose.connect(settings.db, function (err) {
   if (err) {
     console.log('连接数据库出错: ', settings.db, err.message);
+    process.exit(1);
   }
 });
 
